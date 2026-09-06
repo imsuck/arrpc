@@ -18,7 +18,8 @@ const getWebpackRequire = () => {
   const reqs = [];
   const seen = new Set();
 
-  const chunk = unsafeWindow.webpackChunkdiscord_app || window.webpackChunkdiscord_app || webpackChunkdiscord_app;
+  const whichWindow = typeof unsafeWindow !== "undefined" ? unsafeWindow : window;
+  const chunk = whichWindow.webpackChunkdiscord_app || webpackChunkdiscord_app;
 
   chunk.push([[ Symbol() ], {}, req => {
     if (req && !seen.has(req)) {
